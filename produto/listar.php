@@ -50,6 +50,7 @@ $resultado = mysqli_stmt_get_result($stmt);
                     <th>Nome</th>
                     <th>Valor</th>
                     <th>Categoria</th>
+                    <th>Estoque</th>
                     <th style="width: 150px;">Ações</th>
                 </tr>
             </thead>
@@ -71,6 +72,13 @@ $resultado = mysqli_stmt_get_result($stmt);
                     </td>
                     <td>R$ <?= number_format($row['valor'], 2, ',', '.') ?></td>
                     <td><span style="background: #E0E7FF; color: var(--primary); padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.85rem; font-weight: 500;"><?= htmlspecialchars($row['categoria_nome']) ?></span></td>
+                    <td>
+                        <?php if ($row['estoque'] < 5): ?>
+                            <span style="background: #FEF2F2; color: var(--danger); padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.85rem; font-weight: bold;"><?= $row['estoque'] ?> (Baixo)</span>
+                        <?php else: ?>
+                            <span style="font-weight: 500;"><?= $row['estoque'] ?> un.</span>
+                        <?php endif; ?>
+                    </td>
                     <td class="table-actions">
                         <a href="form_editar.php?cod=<?= $row['cod'] ?>" class="btn btn-sm btn-secondary">Editar</a>
                         <a href="excluir.php?cod=<?= $row['cod'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</a>
@@ -80,7 +88,7 @@ $resultado = mysqli_stmt_get_result($stmt);
                 
                 <?php if (mysqli_num_rows($resultado) == 0): ?>
                 <tr>
-                    <td colspan="5" style="text-align: center; color: var(--text-muted);">Nenhum produto cadastrado.</td>
+                    <td colspan="6" style="text-align: center; color: var(--text-muted);">Nenhum produto cadastrado.</td>
                 </tr>
                 <?php endif; ?>
             </tbody>

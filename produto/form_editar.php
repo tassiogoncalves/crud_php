@@ -38,9 +38,15 @@ $res_cat = mysqli_query($conexao, $sql_cat);
             <input type="text" name="nome" id="nome" value="<?= htmlspecialchars($produto['nome']) ?>" required>
         </div>
 
-        <div class="form-group">
-            <label for="valor">Valor (R$)</label>
-            <input type="number" name="valor" id="valor" step="0.01" min="0" value="<?= $produto['valor'] ?>" required>
+        <div class="form-group" style="display: flex; gap: 1rem;">
+            <div style="flex: 1;">
+                <label for="valor">Valor (R$)</label>
+                <input type="number" name="valor" id="valor" step="0.01" min="0" value="<?= $produto['valor'] ?>" required>
+            </div>
+            <div style="flex: 1;">
+                <label for="estoque">Estoque Atual</label>
+                <input type="number" name="estoque" id="estoque" min="0" value="<?= $produto['estoque'] ?>" required>
+            </div>
         </div>
 
         <div class="form-group">

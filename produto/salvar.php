@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $valor = (float) $_POST['valor'];
     $categoria_cod = (int) $_POST['categoria'];
     $descricao = trim($_POST['descricao']);
+    $estoque = (int) $_POST['estoque'];
     
     $nome_foto = null;
     
@@ -36,13 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     // Inserção no banco com Prepared Statements
     if ($nome_foto) {
-        $sql = "INSERT INTO produto (nome, valor, descricao, categoria, foto) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO produto (nome, valor, descricao, categoria, foto, estoque) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($conexao, $sql);
-        mysqli_stmt_bind_param($stmt, "sdsis", $nome, $valor, $descricao, $categoria_cod, $nome_foto);
+        mysqli_stmt_bind_param($stmt, "sdsisi", $nome, $valor, $descricao, $categoria_cod, $nome_foto, $estoque);
     } else {
-        $sql = "INSERT INTO produto (nome, valor, descricao, categoria) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO produto (nome, valor, descricao, categoria, estoque) VALUES (?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($conexao, $sql);
-        mysqli_stmt_bind_param($stmt, "sdsi", $nome, $valor, $descricao, $categoria_cod);
+        mysqli_stmt_bind_param($stmt, "sdsii", $nome, $valor, $descricao, $categoria_cod, $estoque);
     }
     
     if (mysqli_stmt_execute($stmt)) {

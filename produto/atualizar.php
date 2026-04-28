@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $valor = (float) $_POST['valor'];
     $categoria_cod = (int) $_POST['categoria'];
     $descricao = trim($_POST['descricao']);
+    $estoque = (int) $_POST['estoque'];
     
     // Verifica se uma nova foto foi enviada
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
@@ -41,9 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
                 
                 // Atualiza com a nova foto
-                $sql = "UPDATE produto SET nome = ?, valor = ?, descricao = ?, categoria = ?, foto = ? WHERE cod = ?";
+                $sql = "UPDATE produto SET nome = ?, valor = ?, descricao = ?, categoria = ?, foto = ?, estoque = ? WHERE cod = ?";
                 $stmt = mysqli_prepare($conexao, $sql);
-                mysqli_stmt_bind_param($stmt, "sdsisi", $nome, $valor, $descricao, $categoria_cod, $nome_foto, $cod);
+                mysqli_stmt_bind_param($stmt, "sdsisii", $nome, $valor, $descricao, $categoria_cod, $nome_foto, $estoque, $cod);
                 
                 if (mysqli_stmt_execute($stmt)) {
                     header("Location: listar.php");
@@ -54,9 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     
     // Atualiza sem mexer na foto
-    $sql = "UPDATE produto SET nome = ?, valor = ?, descricao = ?, categoria = ? WHERE cod = ?";
+    $sql = "UPDATE produto SET nome = ?, valor = ?, descricao = ?, categoria = ?, estoque = ? WHERE cod = ?";
     $stmt = mysqli_prepare($conexao, $sql);
-    mysqli_stmt_bind_param($stmt, "sdsii", $nome, $valor, $descricao, $categoria_cod, $cod);
+    mysqli_stmt_bind_param($stmt, "sdsiii", $nome, $valor, $descricao, $categoria_cod, $estoque, $cod);
             
     if (mysqli_stmt_execute($stmt)) {
         header("Location: listar.php");
