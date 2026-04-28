@@ -28,7 +28,8 @@ if (!isset($_SESSION['usuario_id'])) {
         </nav>
         <div class="user-info">
             Olá, <strong><?= htmlspecialchars($_SESSION['usuario_nome']) ?></strong> (<?= htmlspecialchars($_SESSION['usuario_perfil']) ?>)
-            <a href="<?= BASE_URL ?>logout.php">Sair</a>
+            <a href="<?= BASE_URL ?>perfil.php" style="margin-left: 1rem;">Meu Perfil</a>
+            <a href="<?= BASE_URL ?>logout.php" style="margin-left: 1rem;">Sair</a>
         </div>
     </header>
     <main>
