@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     if (mysqli_stmt_execute($stmt)) {
         $_SESSION['usuario_nome'] = $nome; // Atualiza nome na sessão
+        registrar_log($conexao, $_SESSION['usuario_id'], 'UPDATE', 'usuario', $id, "Usuário atualizou próprio perfil");
         header("Location: perfil.php?sucesso=1");
         exit();
     } else {

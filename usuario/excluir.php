@@ -27,6 +27,7 @@ if (isset($_GET['id'])) {
     mysqli_stmt_bind_param($stmt, "i", $id);
     
     if (mysqli_stmt_execute($stmt)) {
+        registrar_log($conexao, $_SESSION['usuario_id'], 'DELETE', 'usuario', $id, "Usuário excluído");
         header("Location: listar.php");
         exit();
     } else {

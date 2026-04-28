@@ -16,6 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     mysqli_stmt_bind_param($stmt, "si", $nome, $usuario_id);
     
     if (mysqli_stmt_execute($stmt)) {
+        $novo_cod = mysqli_insert_id($conexao);
+        registrar_log($conexao, $_SESSION['usuario_id'], 'INSERT', 'categoria', $novo_cod, "Categoria '$nome' criada");
         header("Location: listar.php");
         exit();
     } else {

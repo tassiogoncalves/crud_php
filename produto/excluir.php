@@ -27,6 +27,7 @@ if (isset($_GET['cod'])) {
     mysqli_stmt_bind_param($stmt, "i", $cod);
     
     if (mysqli_stmt_execute($stmt)) {
+        registrar_log($conexao, $_SESSION['usuario_id'], 'DELETE', 'produto', $cod, "Produto excluído");
         header("Location: listar.php");
         exit();
     } else {

@@ -47,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 mysqli_stmt_bind_param($stmt, "sdsisii", $nome, $valor, $descricao, $categoria_cod, $nome_foto, $estoque, $cod);
                 
                 if (mysqli_stmt_execute($stmt)) {
+                    registrar_log($conexao, $_SESSION['usuario_id'], 'UPDATE', 'produto', $cod, "Produto atualizado (com nova foto)");
                     header("Location: listar.php");
                     exit();
                 }
@@ -60,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     mysqli_stmt_bind_param($stmt, "sdsiii", $nome, $valor, $descricao, $categoria_cod, $estoque, $cod);
             
     if (mysqli_stmt_execute($stmt)) {
+        registrar_log($conexao, $_SESSION['usuario_id'], 'UPDATE', 'produto', $cod, "Produto atualizado");
         header("Location: listar.php");
         exit();
     } else {

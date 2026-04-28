@@ -15,5 +15,7 @@ if (!$conexao) {
     die("Erro na conexão: " . mysqli_connect_error());
 }
 
+require_once __DIR__ . '/../includes/logger.php';
+
 define('BASE_URL', 'http://localhost:8888/crud_php_html/');
 ?>

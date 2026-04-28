@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     
     if (mysqli_stmt_execute($stmt)) {
+        registrar_log($conexao, $_SESSION['usuario_id'], 'UPDATE', 'usuario', $id, "Usuário '$nome' atualizado");
         header("Location: listar.php");
         exit();
     } else {

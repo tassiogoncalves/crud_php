@@ -24,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['usuario_nome'] = $usuario['nome'];
             $_SESSION['usuario_perfil'] = $usuario['perfil'];
             
+            registrar_log($conexao, $usuario['id'], 'LOGIN', 'usuario', $usuario['id'], 'Sessão iniciada');
+            
             header("Location: dashboard.php");
             exit();
         }

@@ -39,6 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     mysqli_stmt_bind_param($stmt, "sssi", $nome, $email, $senha_hash, $perfil_id);
     
     if (mysqli_stmt_execute($stmt)) {
+        $novo_id = mysqli_insert_id($conexao);
+        registrar_log($conexao, $_SESSION['usuario_id'], 'INSERT', 'usuario', $novo_id, "Usuário '$nome' criado com e-mail '$email'");
         header("Location: listar.php");
         exit();
     } else {

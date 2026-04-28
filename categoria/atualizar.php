@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     mysqli_stmt_bind_param($stmt, "si", $nome, $cod);
     
     if (mysqli_stmt_execute($stmt)) {
+        registrar_log($conexao, $_SESSION['usuario_id'], 'UPDATE', 'categoria', $cod, "Categoria renomeada para '$nome'");
         header("Location: listar.php");
         exit();
     } else {

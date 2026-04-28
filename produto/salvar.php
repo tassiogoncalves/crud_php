@@ -47,6 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     
     if (mysqli_stmt_execute($stmt)) {
+        $novo_cod = mysqli_insert_id($conexao);
+        registrar_log($conexao, $_SESSION['usuario_id'], 'INSERT', 'produto', $novo_cod, "Produto '$nome' cadastrado (Estoque: $estoque)");
         header("Location: listar.php");
         exit();
     } else {

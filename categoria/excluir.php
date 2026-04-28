@@ -46,6 +46,7 @@ if (isset($_GET['cod'])) {
     mysqli_stmt_bind_param($stmt, "i", $cod);
     
     if (mysqli_stmt_execute($stmt)) {
+        registrar_log($conexao, $_SESSION['usuario_id'], 'DELETE', 'categoria', $cod, "Categoria excluída");
         header("Location: listar.php");
         exit();
     } else {
