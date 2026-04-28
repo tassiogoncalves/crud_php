@@ -20,7 +20,9 @@ CREATE TABLE IF NOT EXISTS usuario (
 -- Tabela Categoria
 CREATE TABLE IF NOT EXISTS categoria (
     cod INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL
+    nome VARCHAR(100) NOT NULL,
+    usuario_id INT DEFAULT 1,
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON DELETE RESTRICT
 );
 
 -- Tabela Produto

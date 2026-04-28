@@ -2,16 +2,43 @@
 require_once '../includes/header.php';
 require_once '../bd/conexao.php';
 
+$busca = '';
+if (isset($_GET['busca'])) {
+    $busca = trim($_GET['busca']);
+}
+
 $sql = "SELECT p.*, c.nome as categoria_nome 
         FROM produto p 
-        INNER JOIN categoria c ON p.categoria = c.cod 
-        ORDER BY p.nome";
-$resultado = mysqli_query($conexao, $sql);
+        INNER JOIN categoria c ON p.categoria = c.cod";
+
+if (!empty($busca)) {
+    $sql .= " WHERE p.nome LIKE ?";
+}
+$sql .= " ORDER BY p.nome";
+
+$stmt = mysqli_prepare($conexao, $sql);
+
+if (!empty($busca)) {
+    $termo_busca = "%" . $busca . "%";
+    mysqli_stmt_bind_param($stmt, "s", $termo_busca);
+}
+
+mysqli_stmt_execute($stmt);
+$resultado = mysqli_stmt_get_result($stmt);
 ?>
 
 <div class="card">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
         <h2>Gerenciar Produtos</h2>
+        
+        <form method="GET" style="display: flex; gap: 0.5rem; flex: 1; max-width: 400px;">
+            <input type="text" name="busca" placeholder="Buscar produto..." value="<?= htmlspecialchars($busca) ?>" style="flex: 1;">
+            <button type="submit" class="btn btn-secondary">Buscar</button>
+            <?php if (!empty($busca)): ?>
+                <a href="listar.php" class="btn" style="background-color: var(--bg-color); color: var(--text-main);">Limpar</a>
+            <?php endif; ?>
+        </form>
+
         <a href="form_inserir.php" class="btn btn-primary">+ Novo Produto</a>
     </div>
 

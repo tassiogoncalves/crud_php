@@ -9,10 +9,11 @@ if (!isset($_SESSION['usuario_id'])) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = trim($_POST['nome']);
+    $usuario_id = $_SESSION['usuario_id'];
     
-    $sql = "INSERT INTO categoria (nome) VALUES (?)";
+    $sql = "INSERT INTO categoria (nome, usuario_id) VALUES (?, ?)";
     $stmt = mysqli_prepare($conexao, $sql);
-    mysqli_stmt_bind_param($stmt, "s", $nome);
+    mysqli_stmt_bind_param($stmt, "si", $nome, $usuario_id);
     
     if (mysqli_stmt_execute($stmt)) {
         header("Location: listar.php");

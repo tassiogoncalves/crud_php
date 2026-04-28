@@ -10,14 +10,15 @@ Este sistema é um painel administrativo completo que permite gerenciar três co
    - **Níveis de Acesso:** Existem *Administradores* e usuários *Comuns*.
    - Apenas o *Administrador* consegue ver e modificar outros usuários do sistema.
 
-2. **📦 Gestão de Produtos (com fotos!)**
-   - Você pode cadastrar, listar, editar e apagar produtos.
+2. **📦 Gestão de Produtos (com fotos e busca!)**
+   - Você pode cadastrar, listar, editar e apagar produtos livremente (seja como Admin ou Usuário Comum).
+   - O sistema conta com uma **Barra de Busca** para filtrar rapidamente os produtos pelo nome.
    - Cada produto tem seu **Preço**, **Descrição** e uma **Foto**!
    - Quando você apaga um produto ou troca a foto dele, o sistema é inteligente e apaga a foto antiga do servidor para não gastar espaço à toa.
 
-3. **📂 Gestão de Categorias**
+3. **📂 Gestão de Categorias (com regras de autoria)**
    - Os produtos são organizados por categorias (ex: Eletrônicos, Roupas).
-   - Você pode criar, editar e excluir categorias.
+   - **Controle de Autoria:** O Usuário Comum só pode editar e excluir as categorias que *ele mesmo criou*. Apenas o Administrador tem poder para editar/excluir todas.
    - *Trava de Segurança:* O sistema não deixa você apagar uma categoria se ainda existirem produtos usando ela.
 
 4. **🛡️ Segurança Avançada**

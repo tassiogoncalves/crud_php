@@ -20,6 +20,15 @@ if (mysqli_num_rows($resultado) == 0) {
 }
 
 $categoria = mysqli_fetch_assoc($resultado);
+
+// Verifica permissão (Admin ou Dono)
+if ($_SESSION['usuario_perfil'] !== 'Administrador' && $categoria['usuario_id'] != $_SESSION['usuario_id']) {
+    echo "<script>
+            alert('Você não tem permissão para editar uma categoria criada por outro usuário.');
+            window.location.href = 'listar.php';
+          </script>";
+    exit();
+}
 ?>
 
 <div class="card" style="max-width: 600px; margin: 0 auto;">
