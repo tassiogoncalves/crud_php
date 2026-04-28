@@ -36,6 +36,9 @@ if (isset($_SESSION['usuario_id'])) {
             <div class="form-group">
                 <label for="senha">Senha</label>
                 <input type="password" name="senha" id="senha" required placeholder="admin123">
+                <div style="text-align: right; margin-top: 0.5rem;">
+                    <a href="esqueci_senha.php" style="font-size: 0.85rem; color: var(--primary); text-decoration: none;">Esqueci minha senha</a>
+                </div>
             </div>
             <button type="submit" class="btn btn-primary" style="width: 100%;">Entrar</button>
         </form>
