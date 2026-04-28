@@ -10,11 +10,12 @@ Este sistema é um painel administrativo completo que permite gerenciar três co
    - **Níveis de Acesso:** Existem *Administradores* e usuários *Comuns*.
    - Apenas o *Administrador* consegue ver e modificar outros usuários do sistema.
 
-2. **📦 Gestão de Produtos (com fotos, busca e estoque!)**
+2. **📦 Gestão de Produtos (com fotos, busca e movimentação de estoque!)**
    - Você pode cadastrar, listar, editar e apagar produtos livremente (seja como Admin ou Usuário Comum).
    - O sistema conta com uma **Barra de Busca** para filtrar rapidamente os produtos pelo nome.
-   - Cada produto tem seu **Preço**, **Descrição**, **Foto** e **Estoque**!
+   - Cada produto tem seu **Preço**, **Descrição**, **Foto** e **Estoque**.
    - O controle de estoque possui um alerta visual automático: se a quantidade for menor que 5, a listagem exibe um "badge" vermelho avisando que o estoque está baixo.
+   - **Módulo de Movimentação (Estilo ERP):** Ao invés de digitar o novo estoque na mão, existe a área "Movimentações" onde os usuários lançam as Entradas e Saídas (informando a quantidade e o motivo). O sistema atualiza o estoque do produto automaticamente e salva tudo num extrato. Impede também que o estoque fique negativo.
    - Quando você apaga um produto ou troca a foto dele, o sistema é inteligente e apaga a foto antiga do servidor para não gastar espaço à toa.
 
 3. **📂 Gestão de Categorias (com regras de autoria)**
