@@ -10,10 +10,11 @@ Este sistema é um painel administrativo completo que permite gerenciar três co
    - **Níveis de Acesso:** Existem *Administradores* e usuários *Comuns*.
    - Apenas o *Administrador* consegue ver e modificar outros usuários do sistema.
 
-2. **📦 Gestão de Produtos (com fotos e busca!)**
+2. **📦 Gestão de Produtos (com fotos, busca e estoque!)**
    - Você pode cadastrar, listar, editar e apagar produtos livremente (seja como Admin ou Usuário Comum).
    - O sistema conta com uma **Barra de Busca** para filtrar rapidamente os produtos pelo nome.
-   - Cada produto tem seu **Preço**, **Descrição** e uma **Foto**!
+   - Cada produto tem seu **Preço**, **Descrição**, **Foto** e **Estoque**!
+   - O controle de estoque possui um alerta visual automático: se a quantidade for menor que 5, a listagem exibe um "badge" vermelho avisando que o estoque está baixo.
    - Quando você apaga um produto ou troca a foto dele, o sistema é inteligente e apaga a foto antiga do servidor para não gastar espaço à toa.
 
 3. **📂 Gestão de Categorias (com regras de autoria)**
@@ -21,9 +22,15 @@ Este sistema é um painel administrativo completo que permite gerenciar três co
    - **Controle de Autoria:** O Usuário Comum só pode editar e excluir as categorias que *ele mesmo criou*. Apenas o Administrador tem poder para editar/excluir todas.
    - *Trava de Segurança:* O sistema não deixa você apagar uma categoria se ainda existirem produtos usando ela.
 
-4. **🛡️ Segurança Avançada**
-   - **Senhas Criptografadas:** As senhas nunca são salvas em texto puro no banco. Elas viram um "hash" seguro (bcrypt).
-   - **Proteção contra Hackers:** Todo o sistema foi construído usando *Prepared Statements*. Isso significa que ele está 100% blindado contra **SQL Injection** (um dos ataques mais comuns na internet).
+4. **🛡️ Segurança, Logs e Auditoria**
+   - Senhas criptografadas usando o método `password_hash` (padrão ouro de segurança atual).
+   - Proteção de rotas em todo o sistema (ninguém acessa as telas pelo navegador sem estar logado).
+   - **Contra Invasões:** O código inteiro foi blindado contra SQL Injection (ataques hackers) utilizando a técnica de *Prepared Statements*.
+   - **Sistema de Auditoria Invisível:** O sistema possui a função de Log. Todas as ações cruciais (login, cadastro, atualização e exclusão) são salvas silenciosamente no banco de dados. Administradores possuem uma tela exclusiva ("Logs") no menu onde podem auditar o que cada usuário fez, em qual dia e hora.
+
+5. **⚙️ Ferramentas Práticas**
+   - **Meu Perfil:** Cada usuário pode acessar a tela de "Meu Perfil" e mudar seu próprio nome de exibição e alterar sua senha sem precisar do Administrador.
+   - **Recuperação de Senha:** Esqueceu a senha? Tem uma tela para colocar o email. O sistema integra nativamente com a biblioteca **PHPMailer** para disparar um e-mail com link seguro e temporário (1 hora) para você criar uma senha nova.
 
 ---
 
