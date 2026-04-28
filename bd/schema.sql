@@ -33,7 +33,27 @@ CREATE TABLE IF NOT EXISTS produto (
     descricao TEXT,
     categoria INT NOT NULL,
     foto VARCHAR(255),
+    estoque INT DEFAULT 0,
     FOREIGN KEY (categoria) REFERENCES categoria(cod) ON DELETE RESTRICT
+);
+
+-- Tabela de Logs (Auditoria)
+CREATE TABLE IF NOT EXISTS logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,
+    acao VARCHAR(50),
+    tabela VARCHAR(50),
+    registro_id INT,
+    detalhes TEXT,
+    data_hora DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabela de Recuperação de Senha
+CREATE TABLE IF NOT EXISTS recuperacao_senha (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(100),
+    token VARCHAR(100),
+    expiracao DATETIME
 );
 
 -- Inserindo perfis básicos
