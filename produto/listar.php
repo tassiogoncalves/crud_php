@@ -79,7 +79,8 @@ $resultado = mysqli_stmt_get_result($stmt);
                             <span style="font-weight: 500;"><?= $row['estoque'] ?> un.</span>
                         <?php endif; ?>
                     </td>
-                    <td class="table-actions">
+                    <td class="table-actions" style="width: 250px;">
+                        <a href="../movimentacao/form_inserir.php?produto_id=<?= $row['cod'] ?>" class="btn btn-sm" style="background: #10B981; color: white;">🔄 Movimentar</a>
                         <a href="form_editar.php?cod=<?= $row['cod'] ?>" class="btn btn-sm btn-secondary">Editar</a>
                         <a href="excluir.php?cod=<?= $row['cod'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</a>
                     </td>

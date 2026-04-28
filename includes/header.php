@@ -22,6 +22,7 @@ if (!isset($_SESSION['usuario_id'])) {
             <a href="<?= BASE_URL ?>dashboard.php">Dashboard</a>
             <a href="<?= BASE_URL ?>categoria/listar.php">Categorias</a>
             <a href="<?= BASE_URL ?>produto/listar.php">Produtos</a>
+            <a href="<?= BASE_URL ?>movimentacao/listar.php">Movimentações</a>
             <?php if ($_SESSION['usuario_perfil'] === 'Administrador'): ?>
                 <a href="<?= BASE_URL ?>usuario/listar.php">Usuários</a>
                 <a href="<?= BASE_URL ?>logs/listar.php">Logs</a>

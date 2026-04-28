@@ -56,6 +56,19 @@ CREATE TABLE IF NOT EXISTS recuperacao_senha (
     expiracao DATETIME
 );
 
+-- Tabela de Movimentação de Estoque
+CREATE TABLE IF NOT EXISTS movimentacao_estoque (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produto_id INT NOT NULL,
+    usuario_id INT NOT NULL,
+    tipo ENUM('ENTRADA', 'SAIDA') NOT NULL,
+    quantidade INT NOT NULL,
+    motivo VARCHAR(255),
+    data_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (produto_id) REFERENCES produto(cod) ON DELETE CASCADE,
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON DELETE RESTRICT
+);
+
 -- Inserindo perfis básicos
 INSERT INTO perfil (nome) VALUES ('Administrador'), ('Comum');
 
